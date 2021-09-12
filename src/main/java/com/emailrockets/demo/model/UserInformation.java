@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
@@ -19,6 +20,17 @@ public class UserInformation {
     private String firstName;
     private String lastName;
     private String middleName;
+    private boolean isActive;
+
+    public UserInformation(Long id, String mail, String firstName, String lastName, String middleName, Boolean isActive) {
+        this.id = id;
+        this.mail = mail;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.isActive = isActive;
+    }
+
 
     public UserInformation(Long id, String mail, String firstName, String lastName, String middleName) {
         this.id = id;
@@ -28,12 +40,12 @@ public class UserInformation {
         this.middleName = middleName;
     }
 
-
-    public UserInformation(String mail, String firstName, String lastName, String middleName) {
+    public UserInformation(String mail, String firstName, String lastName, String middleName, Boolean isActive) {
         this.mail = mail;
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
+        this.isActive = isActive;
     }
 
 
@@ -75,5 +87,22 @@ public class UserInformation {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    public boolean getActive() {
+        return isActive;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserInformation that = (UserInformation) o;
+        return isActive == that.isActive && Objects.equals(id, that.id) && Objects.equals(mail, that.mail) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(middleName, that.middleName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, mail, firstName, lastName, middleName, isActive);
     }
 }

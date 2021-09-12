@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/{mail}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable String mail){
+    public ResponseEntity<UserDto> getUserByMail(@PathVariable String mail){
         return ResponseEntity.ok(userService.getUserByMail(mail));
     }
 
@@ -42,9 +42,15 @@ public class UserController {
         return ResponseEntity.ok(userService.updateUser(mail, updateUserRequest)); //202
     }
 
-   /* @PatchMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Void> deactiveUser(@PathVariable("id") Long id){
-        userService.deactiveUser(id);
+        userService.deactivateUser(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/{id}/active")
+    public ResponseEntity<Void> activeUser(@PathVariable("id") Long id){
+        userService.activateUser(id);
         return ResponseEntity.ok().build();
     }
 
@@ -52,5 +58,5 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id){
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
-    }*/
+    }
 }
