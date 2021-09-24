@@ -178,7 +178,7 @@ public class UserServiceTest extends TestSupport {
     }
 
 
-    @Test
+    /*@Test
     public void testDeactivateUser_whenUserIdExist_itShouldUpdateUserByActiveFalse(){
 
         String mail = "mail@mailproject.com";
@@ -191,7 +191,7 @@ public class UserServiceTest extends TestSupport {
 
         Mockito.verify(repository).findById(userId);
         Mockito.verify(repository).save(savedUser);
-    }
+    }*/
 
     @Test
     public void testDeactivateUser_whenUserIdDoesNotExist_itShouldThrowsUSerNotFoundException(){
